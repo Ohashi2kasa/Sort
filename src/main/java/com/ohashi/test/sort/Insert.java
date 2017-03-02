@@ -8,18 +8,20 @@ import java.util.Random;
  */
 public class Insert {
     public static void main(String[] args) {
-        int a = 20;
-        int data[] = new int[a];
+        int[] data = RamdomNumberArray.setRamdomArray(100);
 
-        for (int j = 0; j < a; j++) {
-            Random ran = new Random();
-            int num = ran.nextInt(20) + 1;
-            data[j] = num;
-        }
+        long start = System.nanoTime();
+        int[] sortData = insert(data);
+        long end = System.nanoTime();
+
+
+        System.out.println(" \n挿入ソート ");
         for (int i = 0; i < data.length; i++) {
             System.out.print(data[i] + " ");
         }
-
+        System.out.println("\nTime:" + (end - start) / 1000000f + "ms");
+    }
+    public static int[] insert(int[] data) {
         for (int j = 1; j < data.length; j++) {
             int key = data[j];
             int i = j - 1;
@@ -29,10 +31,6 @@ public class Insert {
             }
             data[i + 1] = key;
         }
-        System.out.println(" \n挿入ソート ");
-        for (int i = 0; i < data.length; i++) {
-
-            System.out.print(data[i] + " ");
-        }
+        return data;
     }
 }

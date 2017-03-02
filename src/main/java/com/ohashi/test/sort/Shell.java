@@ -7,17 +7,21 @@ import java.util.Random;
  */
 public class Shell {
     public static void main(String[] args) {
-        int a = 20;
-        int data[] = new int[a];
+        int[] data = RamdomNumberArray.setRamdomArray(50);
 
-        for (int j = 0; j < a; j++) {
-            Random ran = new Random();
-            int num = ran.nextInt(30) + 1;
-            data[j] = num;
-        }
-        for (int i = 0; i < data.length; i++) {
+        long start = System.nanoTime();
+        int[] sortData = shell(data);
+        long end = System.nanoTime();
+
+        System.out.println(" \nShell sort ");
+        for (int i = 0; i < sortData.length; i++) {
             System.out.print(data[i] + " ");
         }
+        System.out.println("\nTime:" + (end - start) / 1000000f + "ms");
+    }
+
+    public static int[] shell(int[] data) {
+
         for (int range = data.length / 2; range > 0; range /= 2) {
             // 間隔内での移動
             for (int h = 0; h < range; h++) {
@@ -33,9 +37,8 @@ public class Shell {
                 }
             }
         }
-        System.out.println(" \nShell sort ");
-        for (int i = 0; i < data.length; i++) {
-            System.out.print(data[i] + " ");
-        }
+        return data;
     }
+
+
 }

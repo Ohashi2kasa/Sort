@@ -8,29 +8,19 @@ import java.util.Random;
 public class Quick {
     public static void main(String[] args) {
 
-        int a = 20;
-        int data[] = new int[a];
+        int[] data = RamdomNumberArray.setRamdomArray(100);
+        long start = System.nanoTime();
+        int[] sortData = sort(data, 0, data.length - 1);
+        long end = System.nanoTime();
 
-        for (int j = 0; j < a; j++) {
-            Random ran = new Random();
-            int num = ran.nextInt(20) + 1;
-            data[j] = num;
+        System.out.println(" \nQuick sort ");
+        for (int i = 0; i < sortData.length; i++) {
+            System.out.print(sortData[i] + ",");
         }
-
-        for (int i = 0; i < data.length; i++) {
-            System.out.print(data[i] + ",");
-
-        }
-
-        sort(data, 0, data.length - 1);
-
-        System.out.println(" \nsort ");
-        for (int i = 0; i < data.length; i++) {
-            System.out.print(data[i] + ",");
-        }
+        System.out.println("\nTime:" + (end - start) / 1000000f + "ms");
     }
 
-    public static void sort(int[] data, int left, int right) {
+    public static int[] sort(int[] data, int left, int right) {
         if (left <= right) {
             // ピボットは中間
             int pivot = data[(left + right) / 2];
@@ -60,6 +50,7 @@ public class Quick {
             sort(data, leftPointer, right);
 
         }
+        return data;
 
     }
 
